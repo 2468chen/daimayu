@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0"/>
+    <title>黑客帝国--文字雨</title>
+    <style>
+        body{margin:0;overflow:hidden;}
+        #img{position: absolute;top:0;right: 0;bottom:0;left:0;margin: auto;width:100%;opacity: 0.09}
+        #imge{position: absolute;bottom:0;left:0;margin: auto;width:30%;opacity: 1;height: 30%;}
+        .play{display:none;}
+        .play2{display:none;}
+    </style>
+</head>
+<body>
+     <canvas style="background:#000;" id="canvas"></canvas>
+     <img src="19.jpg" id="img" class="play"/>
+     <img src="psb2.jpg" id="imge" class="play2"/>
+     <embed src="1.mp3" autostart="true" loop="true" hidden=""></embed>
+     <script>
+         var canvas = document.getElementById("canvas");
+         var ctx = canvas.getContext("2d");
+         var s = window.screen;
+         var w = canvas.width = s.width;
+         var h = canvas.height = s.height;
+
+         var fontSize = 8;
+         var clos = Math.floor(w/fontSize);
+         var drops = [];
+         var str ="01uefiogej0GFHFGJHGHFJMGHJKHG,#$%.;'";
+           /*drops.push("记得发空格即可登上");
+           drops.push("将大幅改进的风景，");
+           alert(drops[0]);*/
+        for(var i=0;i < clos ;i++){
+            drops.push(0);
+        }
+        function drawString(){
+            ctx.fillStyle = "rgba(0,0,0,0.07)";
+            ctx.fillRect(0,0,w,h);
+            ctx.font = ".7"+fontSize+"px microsoft YaHei";
+            ctx.fillStyle ="red";
+            for(var i = 0;i < clos;i++){
+                var x = i*fontSize;
+                var y = drops[i]*fontSize;
+                //绘制文字
+                ctx.fillText(str[Math.floor(Math.random()*str.length)],x,y);
+                //Math.random()取值范围是0到1之间，取值不到1
+                if(y > h && Math.random() > 0.975){
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+         setInterval(drawString,35);
+
+         // function rgbaColor(){
+         // 	var r = Math.floor(Math.random()*256);
+         // 	var g = Math.floor(Math.random()*256);
+         // 	var b = Math.floor(Math.random()*256);
+         // 	return "rgb("+r+","+g+","+b+")"
+         // }
+
+         function conCon(){
+             if (document.getElementById("img").className == "play") {
+                 document.getElementById("img").className = "";
+             } else {
+                 document.getElementById("img").className = "play"
+             }
+         }
+         setInterval(conCon,2000)
+          function context(){
+             if (document.getElementById("imge").className == "play") {
+                 document.getElementById("imge").className = "";
+             } else {
+                 document.getElementById("imge").className = "play"
+             }
+         }
+         setInterval(context,2000)
+     </script>
+</body>
+</html>
